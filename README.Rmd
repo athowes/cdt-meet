@@ -1,0 +1,52 @@
+---
+title: "StatML cohort meeting rota"
+date: "Winter 2020"
+output:
+  github_document
+---
+
+You could get in touch with each other, or you couldn't, up to you.
+Feel free to group up with other pairs too if you'd prefer.
+
+If you would like to refer to something online instead of a PDF you can use [this](https://github.com/athowes/cdt-meet).
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+
+cohort19 <- c("Michael", "Anna", "Antonie", "Adam", "Bryan", "Dan", "Enrico", "Harrison", "James", "Jase", "Melodie", "Phil", "Sahra", "Stephanos", "Week off")
+cohort20 <- c("Benjamin", "Ben", "Andrea", "Xing", "Tresnia", "Michael", "Alexander", "Jose", "Oscar", "Lucile", "Thomas", "Jake", "Desislava", "Andrew", "Zoi")
+
+index <- 1:15
+week <- c()
+for(i in seq_along(index)) { 
+  week <- c(week, index[-(0:i)], index[0:i])
+}
+
+meetings <- data.frame(expand.grid(cohort19, cohort20), week)
+names(meetings) <- c("2019 Cohort", "2020 Cohort", "Week")
+
+week_dates <- seq(from = as.Date('2020-12-07'), by = "1 week", length.out = 15)
+meetings$Date <- as.Date(plyr::mapvalues(meetings$Week, from = 1:15, week_dates), origin='1970-01-01')
+```
+
+```{r echo=FALSE}
+knitr::kable(meetings %>% filter(week == 1))
+knitr::kable(meetings %>% filter(week == 2))
+knitr::kable(meetings %>% filter(week == 3))
+knitr::kable(meetings %>% filter(week == 4))
+knitr::kable(meetings %>% filter(week == 5))
+knitr::kable(meetings %>% filter(week == 6))
+knitr::kable(meetings %>% filter(week == 7))
+knitr::kable(meetings %>% filter(week == 8))
+knitr::kable(meetings %>% filter(week == 9))
+knitr::kable(meetings %>% filter(week == 10))
+knitr::kable(meetings %>% filter(week == 11))
+knitr::kable(meetings %>% filter(week == 12))
+knitr::kable(meetings %>% filter(week == 13))
+knitr::kable(meetings %>% filter(week == 14))
+knitr::kable(meetings %>% filter(week == 15))
+```
